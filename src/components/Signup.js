@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 // Could import single components instead of Adapter class to reduce bundle size,
 // but Adapter#method syntax helps with readability
 import Adapter from '../utils/Adapter';
@@ -14,7 +14,7 @@ export default class Signup extends React.Component {
 
     render() {
         return (
-          <Fragment>
+          <div id='signup-form'>
             <form onSubmit={(e => Adapter.submitLoginOrSignupForm(e, 'signup', this.state) )}>
               <label htmlFor="username">Username: </label>
               <input
@@ -48,7 +48,7 @@ export default class Signup extends React.Component {
             >
               Already have an account?
             </button>
-          </Fragment>
+          </div>
         );
     }
 }

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import Adapter from '../utils/Adapter'
 
 export default class Login extends React.Component {
@@ -11,7 +11,7 @@ export default class Login extends React.Component {
 
     render() {
         return (
-          <Fragment>
+          <div id='login-form'>
             <form onSubmit={(e) => Adapter.submitLoginOrSignupForm(e, 'login', this.state) }>
               <label htmlFor="username">Username</label>
               <input
@@ -36,7 +36,7 @@ export default class Login extends React.Component {
                 >
                 New to SpellChecker?
               </button>
-              </Fragment>
+              </div>
         );
     }
 }

@@ -1,9 +1,9 @@
 
-import React, {Fragment} from 'react'
+import React from 'react'
 
 const Welcome = (props) => {
     return (
-      <Fragment>
+      <div id='welcome-page'>
         <button 
             name="currentView" 
             value="login" 
@@ -16,7 +16,7 @@ const Welcome = (props) => {
             onClick={props.handleChange} >
             Sign Up
         </button>
-      </Fragment>
+      </div>
     );
 }
 
