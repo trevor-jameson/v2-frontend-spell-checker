@@ -9,14 +9,14 @@ export default class LandingPage extends React.Component {
         currentView: '',
     }
 
-    handleChange = (e) => this.setState({ [e.currentTarget.name]: e.currentTarget.value })
+    handleChange = (e) => this.setState({ [e.currentTarget.name]: e.currentTarget.value })    
 
     pageToRender = () => {
         switch (this.state.currentView) {
             case 'login':
-                return <Login />
+                return <Login handleChange={this.handleChange} />
             case 'signup':
-                return <Signup />
+                return <Signup handleChange={this.handleChange} />
             default:
                 return <Welcome handleChange={this.handleChange} />
         }
