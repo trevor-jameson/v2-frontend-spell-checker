@@ -5,9 +5,8 @@ import Signup from './Signup'
 import Welcome from './Welcome'
 
 export default class LandingPage extends React.Component {
-    state = {
-        currentView: '',
-    }
+    
+    state = { currentView: '' }
 
     handleChange = (e) => this.setState({ [e.currentTarget.name]: e.currentTarget.value })    
 

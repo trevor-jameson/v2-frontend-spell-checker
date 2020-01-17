@@ -1,12 +1,12 @@
 export default class Adapter {
 
     static REQUEST_CONFIG = {
-    HEADERS: {
-        "Accepts": "application/json",
-        "Content-Type": "application/json"
-    },
-    BACKEND_URL: 'http://localhost:3001/'
-    };
+        HEADERS: {
+            "Accepts": "application/json",
+            "Content-Type": "application/json"
+        },
+        BACKEND_URL: 'http://localhost:3001/'
+        };
 
     static post(endpoint, body) {
 

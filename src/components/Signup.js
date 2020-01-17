@@ -4,6 +4,7 @@ import React from 'react'
 import Adapter from '../utils/Adapter';
 
 export default class Signup extends React.Component {
+    
     state = {
         username: '',
         password: '',

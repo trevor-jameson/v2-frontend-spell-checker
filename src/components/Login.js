@@ -1,14 +1,19 @@
 import React from 'react'
 import Adapter from '../utils/Adapter'
 
+import { UserContext } from '../index.js'
+
 export default class Login extends React.Component {
+
     state = {
         username: '',
         password: '',
     }
+
+    
     
     handleChange = (e) => this.setState({ [e.currentTarget.name]: e.currentTarget.value })
-
+    
     render() {
         return (
           <div id='login-form'>
