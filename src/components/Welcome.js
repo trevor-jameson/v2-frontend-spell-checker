@@ -3,7 +3,7 @@ import React, {Fragment} from 'react'
 
 const Welcome = (props) => {
     return (
-      <>
+      <Fragment>
         <button 
             name="currentView" 
             value="login" 
@@ -16,7 +16,7 @@ const Welcome = (props) => {
             onClick={props.handleChange} >
             Sign Up
         </button>
-      </>
+      </Fragment>
     );
 }
 
