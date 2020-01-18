@@ -1,4 +1,5 @@
 import React from 'react'
+import Adapter from '../utils/Adapter'
 
 export default class Signup extends React.Component {
     state = {
@@ -11,7 +12,7 @@ export default class Signup extends React.Component {
 
     render() {
         return (
-          <form>
+          <form onSubmit={(e) => Adapter.submitLoginOrSignup(e, 'signup', {...this.state})}> 
             <label htmlFor="username">Username: </label>
             <input
               type="text"
@@ -33,7 +34,7 @@ export default class Signup extends React.Component {
               value={this.state.passwordConfirmation}
               onChange={this.handleChange}
             />
-            <button>Submit</button>
+            <button type='submit' >Submit</button>
           </form>
         );
     }
