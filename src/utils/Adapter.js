@@ -1,3 +1,7 @@
+// import { connect } from 'react-redux'
+import { setAuthenticatedUser } from '../redux/actions/userActions'
+import store from '../redux/store'
+
 export default class Adapter {
 
     static BACKEND_URL = 'http://localhost:3001/'
@@ -34,6 +38,8 @@ export default class Adapter {
             .then(res => {
                 window.localStorage.setItem('jwt', res.jwt)
                 console.log(res)
+                // Breaking standard pattern by dispatching from Class.method
+                store.dispatch(setAuthenticatedUser(res.user))
                 // NOTE: Architectural decision needed on where to store global state
             })
             .catch(console.log)

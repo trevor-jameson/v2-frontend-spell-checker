@@ -14,7 +14,7 @@ export default class LandingPage extends React.Component {
     pageToRender = () => {
         switch (this.state.currentView) {
             case 'login':
-                return <Login />
+                return <Login changeView={this.handleChange} />
             case 'signup':
                 return <Signup changeView={this.handleChange} />
             default:

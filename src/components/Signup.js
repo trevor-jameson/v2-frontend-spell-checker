@@ -38,7 +38,7 @@ export default class Signup extends React.Component {
           <button type='submit' >Submit</button>
         </form>
         <button 
-          onClick={this.props.handleChange}
+          onClick={this.props.changeView}
           name='currentView'
           value='login'
         >
