@@ -16,9 +16,9 @@ export default class LandingPage extends React.Component {
             case 'login':
                 return <Login />
             case 'signup':
-                return <Signup />
+                return <Signup changeView={this.handleChange} />
             default:
-                return <Welcome handleChange={this.handleChange} />
+                return <Welcome changeView={this.handleChange} />
         }
     }
 
@@ -27,7 +27,6 @@ export default class LandingPage extends React.Component {
             <div>
                 {this.pageToRender()} 
             </div>
-
         )
     }
 }

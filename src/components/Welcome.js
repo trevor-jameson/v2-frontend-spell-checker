@@ -7,13 +7,13 @@ const Welcome = (props) => {
         <button 
             name="currentView" 
             value="login" 
-            onClick={props.handleChange} >
+            onClick={props.changeView} >
             Login
         </button>
         <button 
             name="currentView" 
             value="signup" 
-            onClick={props.handleChange} >
+            onClick={props.changeView} >
             Sign Up
         </button>
       </Fragment>
