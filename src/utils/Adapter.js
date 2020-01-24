@@ -13,13 +13,22 @@ export default class Adapter {
         },
     }
 
+    static get(endpoint) {
+        const headers = {...this.REQUEST_CONFIG.HEADERS}
+        headers.Authorization = window.localStorage.getItem('jwt')
+
+        return fetch(this.BACKEND_URL + endpoint, {
+            headers
+        })
+    }
+
     static post(endpoint, body) {
 
         // Destructure headers object to prevent accidental mutation
         const headers = {...this.REQUEST_CONFIG.HEADERS}
 
         // Add jwt token to request, if not logging in or signing up
-        if ((endpoint !== 'login') && (endpoint !== 'signup')) {headers.jwt = window.localStorage.getItem('jwt')}
+        if ((endpoint !== 'login') && (endpoint !== 'signup')) {headers.Authorization = window.localStorage.getItem('jwt')}
 
         return fetch(this.BACKEND_URL + endpoint, {
                 method: "POST",
@@ -38,9 +47,11 @@ export default class Adapter {
             .then(res => {
                 window.localStorage.setItem('jwt', res.jwt)
                 console.log(res)
-                // Breaking standard pattern by dispatching from Class.method
+                // Breaking conventional pattern by dispatching action from Class.method
                 store.dispatch(setAuthenticatedUser(res.user))
-                // NOTE: Architectural decision needed on where to store global state
+                
+                // Redirect to /spells route
+                window.location.href = '/spells'
             })
             .catch(console.log)
     }
