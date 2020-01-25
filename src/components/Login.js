@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import Adapter from '../utils/Adapter'
+import '../styled_components/LandingFormWrapper'
+import LandingFormWrapper from '../styled_components/LandingFormWrapper'
 
-export default class Login extends React.Component {
+class Login extends React.Component {
   state = {
       username: '',
       password: '',
@@ -11,7 +13,7 @@ export default class Login extends React.Component {
 
   render() {
     return (
-      <div id='login-view'>
+      <Fragment>
         <form onSubmit={(e) => Adapter.submitLoginOrSignup(e, 'login', this.state)}>
           <label htmlFor="username">Username</label>
           <input 
@@ -34,9 +36,11 @@ export default class Login extends React.Component {
           value='signup'
           onClick={this.props.changeView}
           >
-          Create An Account
+          Signup to SpellChecker
         </button>
-      </div>
+      </Fragment>
     );
   }
 }
+
+export default LandingFormWrapper(Login)
