@@ -1,5 +1,6 @@
 import React from 'react'
 import Adapter from '../utils/Adapter'
+import SpellCard from './SpellCard'
 
 export default class SpellsPage extends React.Component {
     state = {
@@ -21,7 +22,13 @@ export default class SpellsPage extends React.Component {
     }
 
     render() {
-        return (<div></div>)
+        return (
+            <div>
+                {this.state.isLoading ? null : 
+                    this.state.spells.map((spell, index) => <SpellCard spell={spell} key={index}/>)
+                }
+            </div>
+        )
     }
 }
 
