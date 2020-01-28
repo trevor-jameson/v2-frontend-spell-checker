@@ -1,16 +1,21 @@
 import React from 'react'
-const SpellCard = (props) => {
-    const { name, id, desc, lvl, klass } = props.spell
-    return (
-        <div
-            className='spell-card'
+import styled from 'styled-components'
 
-        >
-            Name: {name}
-            Description: {desc}
-            Klasses: {klass}
-        </div>
-    )
+const StyledSpellCard = styled.div`
+    padding: 2em;
+`
+const SpellCard = (props) => {
+    const { name, desc, klass } = props.spell
+    return (
+      <StyledSpellCard>
+        Name: {name}
+        <br />
+        Description: {desc}
+        <br />
+        Klasses: {klass}
+        <br />
+      </StyledSpellCard>
+    );
 }
 
 export default SpellCard
