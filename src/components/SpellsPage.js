@@ -1,9 +1,14 @@
+// NPM imports
 import React from 'react'
-import Adapter from '../utils/Adapter'
-
 import { connect } from 'react-redux'
 
+// src repo imports
+import Adapter from '../utils/Adapter'
+import SpellCard from '../components/SpellCard'
+
+// Redux-specific src repo imports
 import { fetchedSpells } from '../redux/actionCreators'
+
 
 class SpellsPage extends React.Component {
 
@@ -22,7 +27,11 @@ class SpellsPage extends React.Component {
     }
 
     render() {
-        return (<div></div>)
+        return (
+            <div>
+                {this.props.spells.map((spell, index) => <SpellCard spell={spell} key={index} />)}
+            </div>
+        )
     }
 }
 
