@@ -1,6 +1,5 @@
-// import { connect } from 'react-redux'
-import { setAuthenticatedUser } from '../redux/actions/userActions'
-import store from '../redux/store'
+import { setAuthenticatedUser } from '../redux/actionCreators'
+import { boundDispatch } from '../redux/store'
 
 export default class Adapter {
 
@@ -15,10 +14,10 @@ export default class Adapter {
 
     static post(endpoint, body) {
 
-        // Destructure headers object to prevent accidental mutation
+        // Destructuring headers object to prevent accidental mutation
         const headers = {...this.REQUEST_CONFIG.HEADERS}
 
-        // Add jwt token to request, if not logging in or signing up
+        // Add JWT token to request, if not logging in or signing up
         if ((endpoint !== 'login') && (endpoint !== 'signup')) {headers.jwt = window.localStorage.getItem('jwt')}
 
         return fetch(this.BACKEND_URL + endpoint, {
@@ -36,12 +35,14 @@ export default class Adapter {
         this.post(endpoint, { user: {...body} })
             .then(res => res.json())
             .then(res => {
+                // User JWT is set in localStorage to persist through browser session
                 window.localStorage.setItem('jwt', res.jwt)
-                console.log(res)
-                // Breaking standard pattern by dispatching from Class.method
-                store.dispatch(setAuthenticatedUser(res.user))
-                // NOTE: Architectural decision needed on where to store global state
+                // Note: On page reload, user will have to login to fire userAuth dispatch,
+                // otherwise they'll have JWT but no user data
+                boundDispatch(setAuthenticatedUser(res.user))
+                window.location.href ='/spells'
             })
+            // TODO: Raise error message to user upon 400 response code
             .catch(console.log)
     }
 }

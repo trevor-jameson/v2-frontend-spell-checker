@@ -42,7 +42,7 @@ export default class Signup extends React.Component {
           name='currentView'
           value='login'
         >
-          Login To SpellChecker
+          Already have an account?
         </button>
       </div>
     );

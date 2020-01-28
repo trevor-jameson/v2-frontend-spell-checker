@@ -34,7 +34,7 @@ export default class Login extends React.Component {
           value='signup'
           onClick={this.props.changeView}
           >
-          Create An Account
+          Don't have an account?
         </button>
       </div>
     );
