@@ -12,13 +12,22 @@ export default class Adapter {
         },
     }
 
+    static get(endpoint) {
+        const headers = {...this.REQUEST_CONFIG.HEADERS}
+        headers.Authorization = window.localStorage.getItem('jwt')
+
+        return fetch(this.BACKEND_URL + endpoint, {
+            headers
+        })
+    }
+
     static post(endpoint, body) {
 
         // Destructuring headers object to prevent accidental mutation
         const headers = {...this.REQUEST_CONFIG.HEADERS}
 
-        // Add JWT token to request, if not logging in or signing up
-        if ((endpoint !== 'login') && (endpoint !== 'signup')) {headers.jwt = window.localStorage.getItem('jwt')}
+        // Add jwt token to request, if not logging in or signing up
+        if ((endpoint !== 'login') && (endpoint !== 'signup')) {headers.Authorization = window.localStorage.getItem('jwt')}
 
         return fetch(this.BACKEND_URL + endpoint, {
                 method: "POST",
