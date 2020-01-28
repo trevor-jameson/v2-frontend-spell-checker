@@ -5,14 +5,15 @@ const StyledSpellCard = styled.div`
     padding: 2em;
 `
 const SpellCard = (props) => {
-    const { name, desc, klass } = props.spell
+    debugger
+    const { name, desc, klasses } = props.spell
     return (
       <StyledSpellCard>
         Name: {name}
         <br />
-        Description: {desc}
+        Classes: {klasses.split(' ').join(' & ')}
         <br />
-        Klasses: {klass}
+        Description: {desc}
         <br />
       </StyledSpellCard>
     );

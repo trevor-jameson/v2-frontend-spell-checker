@@ -1,8 +1,17 @@
 import React from 'react'
+import styled from 'styled-components'
 
 import Login from './Login'
 import Signup from './Signup'
 import Welcome from './Welcome'
+
+const StyledLandingContainer = styled.div`
+    border: 2px solid black;
+    margin: 20% auto;
+    padding: 1em;
+    text-align: center;
+    max-width: 20%;
+`
 
 export default class LandingPage extends React.Component {
     state = {
@@ -24,9 +33,9 @@ export default class LandingPage extends React.Component {
 
     render(){
         return (
-            <div id='landing-page'>
+            <StyledLandingContainer>
                 {this.pageToRender()} 
-            </div>
+            </StyledLandingContainer>
         )
     }
 }
