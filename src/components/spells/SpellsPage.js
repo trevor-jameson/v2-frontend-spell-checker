@@ -5,17 +5,13 @@ import { connect } from 'react-redux'
 // src repo imports
 import Adapter from '../../utils/Adapter'
 import SpellCard from './SpellCard'
+import SpellSearch from './SpellSearch'
 
 // Redux-specific src repo imports
 import { fetchedSpells } from '../../redux/actionCreators'
 
 
 class SpellsPage extends React.Component {
-
-    // Local state for controlled filter options
-    state = {
-        name: '',
-    }
 
     componentDidMount() {
         Adapter.get('spells')
@@ -29,6 +25,7 @@ class SpellsPage extends React.Component {
     render() {
         return (
             <div>
+                <SpellSearch/>
                 {this.props.spells.map((spell, index) => <SpellCard spell={spell} key={index} />)}
             </div>
         )
