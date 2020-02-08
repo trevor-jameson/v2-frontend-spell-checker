@@ -1,12 +1,5 @@
-<<<<<<< HEAD:src/components/Login.js
 import React, { Fragment } from 'react'
-import Adapter from '../utils/Adapter'
-import '../styled_components/LandingFormWrapper'
-import LandingFormWrapper from '../styled_components/LandingFormWrapper'
-=======
-import React from 'react'
 import Adapter from '../../utils/Adapter'
->>>>>>> jest-lecture-prep:src/components/users/Login.js
 
 class Login extends React.Component {
   state = {
@@ -29,7 +22,7 @@ class Login extends React.Component {
             />
           <label htmlFor="password">Password</label>
           <input 
-            type="text" 
+            type="password" 
             name="password" 
             value={this.state.password} 
             onChange={this.handleChange}
@@ -41,15 +34,11 @@ class Login extends React.Component {
           value='signup'
           onClick={this.props.changeView}
           >
-<<<<<<< HEAD:src/components/Login.js
-          Signup to SpellChecker
-=======
           Don't have an account?
->>>>>>> jest-lecture-prep:src/components/users/Login.js
         </button>
       </Fragment>
     );
   }
 }
 
-export default LandingFormWrapper(Login)
+export default Login

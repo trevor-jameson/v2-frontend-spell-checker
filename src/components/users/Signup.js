@@ -23,14 +23,14 @@ export default class Signup extends React.Component {
           />
           <label htmlFor="password">Password: </label>
           <input
-            type="text"
+            type="password"
             name="password"
             value={this.state.password}
             onChange={this.handleChange}
           />
           <label htmlFor="passwordConfirmation">Password Confirmation: </label>
           <input
-            type="text"
+            type="password"
             name="passwordConfirmation"
             value={this.state.passwordConfirmation}
             onChange={this.handleChange}
