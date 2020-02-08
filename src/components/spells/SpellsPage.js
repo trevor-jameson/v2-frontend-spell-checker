@@ -22,11 +22,19 @@ class SpellsPage extends React.Component {
             .catch(console.log)
     }
 
+    filterSpellsByQuery = () => {
+        // Note: Refactor after lecture to use Object.keys iterative filter
+        const { spells, spellQuery } = this.props
+
+        // Return spells filtered by whether their name includes the spellQuery (case insensitive)
+        return spells.filter(spell => spell.name.toLowerCase().includes(spellQuery.spellName.toLowerCase()))
+    }
+
     render() {
         return (
             <div>
                 <SpellSearch/>
-                {this.props.spells.map((spell, index) => <SpellCard spell={spell} key={index} />)}
+                {this.filterSpellsByQuery().map((spell, index) => <SpellCard spell={spell} key={index} />)}
             </div>
         )
     }
@@ -34,7 +42,8 @@ class SpellsPage extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        spells: state.spells
+        spells: state.spells,
+        spellQuery: state.spellQuery
     }
 }
 

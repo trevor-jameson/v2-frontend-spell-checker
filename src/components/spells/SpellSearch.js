@@ -12,10 +12,10 @@ class SpellSearch extends React.Component {
     render() {
         const { spellName } = this.state
         return(
-            <div>
+            <form onSubmit={(e) => {e.preventDefault(); this.props.searchSpells({...this.state})}}>
                 <input name='spellName' type='text' value={spellName} onChange={this.handleChange} />
-                <button onClick={() => this.props.searchSpells({...this.state})}>Search Spells</button>
-            </div>
+                <button type="submit">Search Spells</button>
+            </form>
         )
     }
 }

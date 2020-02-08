@@ -9,6 +9,5 @@ export function fetchedSpells(spells) {
 }
 
 export function searchSpells(spellQuery) {
-    console.log('searching for spells')
     return { spellQuery, type: SEARCH_SPELLS}
 }
