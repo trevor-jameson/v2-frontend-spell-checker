@@ -9,4 +9,6 @@ const store = (function configureStore(){
   );
 })()
 
+export const boundDispatch = (action) => store.dispatch(action)
+
 export default store
