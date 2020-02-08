@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import Login from './Login'
-import Signup from './Signup'
+import Signup from '../Signup'
 import Welcome from './Welcome'
 
 const StyledLandingContainer = styled.div`
