@@ -5,6 +5,7 @@ const StyledSpellCard = styled.div`
     padding: 2em;
 `
 const SpellCard = (props) => {
+  
     const { name, desc, klasses } = props.spell
     return (
       <StyledSpellCard>
