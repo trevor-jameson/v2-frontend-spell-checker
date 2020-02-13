@@ -46,8 +46,6 @@ export default class Adapter {
             .then(res => {
                 // User JWT is set in localStorage to persist through browser session
                 window.localStorage.setItem('jwt', res.jwt)
-                // Note: On page reload, user will have to login to fire userAuth dispatch,
-                // otherwise they'll have JWT but no user data
                 boundDispatch(setAuthenticatedUser(res.user))
                 window.location.href ='/spells'
             })
