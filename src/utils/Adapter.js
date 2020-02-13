@@ -46,6 +46,7 @@ export default class Adapter {
             .then(res => {
                 // User JWT is set in localStorage to persist through browser session
                 window.localStorage.setItem('jwt', res.jwt)
+                // User object is set to redux state and hydrated from localstorage through redux-persist after redirect
                 boundDispatch(setAuthenticatedUser(res.user))
                 window.location.href ='/spells'
             })
