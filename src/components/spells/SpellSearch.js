@@ -4,7 +4,8 @@ import { searchSpells } from '../../redux/actionCreators'
 
 class SpellSearch extends React.Component {
     state = {
-       spellName: '' 
+       spellName: '',
+       
     }
 
     
@@ -16,11 +17,26 @@ class SpellSearch extends React.Component {
         return allTimeOptions.map((opt, index) => (<option value={opt} key={index}>{opt}</option>))
     }
 
+    renderNameSuggestions = () => {
+        const matchedSpells = []
+        const spellNameQuery = new RegExp(this.state.spellName, "i")
+        this.props.spells.forEach((spell, index) => {
+            if (spell.name.match(spellNameQuery)) {
+                const listOption = <option value={spell.name} key={index}/>
+                matchedSpells.push(listOption)
+            }
+        })
+        return matchedSpells
+    }
+
     render() {
         const { spellName } = this.state
         return(
             <form onSubmit={(e) => {e.preventDefault(); this.props.searchSpells({...this.state})}}>
-                <input name='spellName' type='text' value={spellName} onChange={this.handleChange} />
+                <input name='spellName' type='text' value={spellName} onChange={this.handleChange} list="spellNameList"/>
+                <datalist id="spellNameList">
+                    {this.renderNameSuggestions()}
+                </datalist>
                 <select>{this.renderCastingTimeOptions()}</select>
                 <button type="submit">Search Spells</button>
             </form>
@@ -32,4 +48,8 @@ const mapDispatchToProps = (dispatch) => ({
     searchSpells: (spellQuery) => dispatch(searchSpells(spellQuery))
 })
 
-export default connect(null, mapDispatchToProps)(SpellSearch)
+const mapStateToProps = (state) => ({
+    spells: state.spells
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(SpellSearch)
