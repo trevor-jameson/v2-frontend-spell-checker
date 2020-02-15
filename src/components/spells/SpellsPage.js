@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import Adapter from '../../utils/Adapter'
 import SpellCard from './SpellCard'
 import SpellSearch from './SpellSearch'
+import { filterSpellsByQuery } from '../../utils/Queries'
 
 // Redux-specific src repo imports
 import { fetchedSpells } from '../../redux/actionCreators'
@@ -22,19 +23,14 @@ class SpellsPage extends React.Component {
             .catch(console.log)
     }
 
-    filterSpellsByQuery = () => {
-        // Note: Refactor after lecture to use Object.keys iterative filter
-        const { spells, spellQuery } = this.props
-
-        // Return spells filtered by whether their name includes the spellQuery (case insensitive)
-        return spells.filter(spell => spell.name.toLowerCase().includes(spellQuery.spellName.toLowerCase()))
-    }
-
     render() {
+        const { spells, spellQuery } = this.props
         return (
             <div>
                 <SpellSearch/>
-                {this.filterSpellsByQuery().map((spell, index) => <SpellCard spell={spell} key={index} />)}
+                {filterSpellsByQuery(spells, spellQuery).map((spell, index) => {
+                    return <SpellCard spell={spell} key={index} />
+                })}
             </div>
         )
     }
