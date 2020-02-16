@@ -25,6 +25,7 @@ class SpellsPage extends React.Component {
 
     render() {
         const { spells, spellQuery } = this.props
+        debugger
         return (
             <div>
                 <SpellSearch/>
