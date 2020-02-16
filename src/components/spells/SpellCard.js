@@ -9,7 +9,7 @@ const SpellCard = (props) => {
     const { name, desc, klasses } = props.spell
     return (
       <StyledSpellCard>
-        Name: {name}
+        <strong>{name}</strong>
         <br />
         Classes: {klasses.split(' ').join(' & ')}
         <br />
