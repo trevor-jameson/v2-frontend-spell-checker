@@ -15,7 +15,24 @@ class SpellSearch extends React.Component {
 
     
 
-    handleChange = (e) => this.setState({ [e.currentTarget.name]: e.currentTarget.value})
+    handleChange = (e) => {
+        let targetVal = e.currentTarget.value
+        
+        // Controlled React components don't allow for bool or null data types as of React major version 16
+        // See PR for details: https://github.com/reactjs/rfcs/pull/53
+        if (targetVal === 'false') { targetVal = false }
+        if (targetVal === 'true') { targetVal = true }
+        if (targetVal === 'null') { targetVal = null }
+        this.setState({ [e.currentTarget.name]: targetVal })
+    }
+
+    resetSearchFilter = (e) => {
+        e.preventDefault();
+        const defaultState = { name: '', castingtime: '', klasses: '', range: '', duration: '', concentration: null, lvl: null,}
+        this.setState(defaultState)
+        this.props.searchSpells({...defaultState})
+    }
+
 
     // Returns a list of HTML <options> given case matched against param string
     renderSearchDropdownOptions = (type) => {
@@ -46,7 +63,7 @@ class SpellSearch extends React.Component {
         const matchedSpells = []
         
         // Return no matches if search query is empty
-        if (this.state.name.length === 0) return matchedSpells
+        if (this.state.name.length < 2) return matchedSpells
         const nameQuery = new RegExp(this.state.name, "i")
 
         // Create datalist options for case-insensitive name matches and add to rendered result array
@@ -60,7 +77,7 @@ class SpellSearch extends React.Component {
     }
 
     render() {
-        const { name } = this.state
+        const { name, castingtime, duration, klasses, range, concentration, lvl } = this.state
         return(
             <form onSubmit={(e) => {e.preventDefault(); this.props.searchSpells({...this.state})}}>
                 <label htmlFor="name">Spell Name: </label>
@@ -76,7 +93,8 @@ class SpellSearch extends React.Component {
                 </datalist>
                 <label htmlFor="castingtime">Casting Time: </label>
                 <select 
-                    name="castingtime" 
+                    name="castingtime"
+                    value={castingtime}
                     onChange={this.handleChange}
                 >
                     {this.renderSearchDropdownOptions('castingtime')}
@@ -84,6 +102,7 @@ class SpellSearch extends React.Component {
                 <label htmlFor="klasses">Class: </label>
                 <select 
                     name="klasses"
+                    value={klasses}
                     onChange={this.handleChange}
                 >
                     {this.renderSearchDropdownOptions('klasses')}
@@ -91,6 +110,7 @@ class SpellSearch extends React.Component {
                 <label htmlFor="range">Range: </label>
                 <select 
                     name="range"
+                    value={range}
                     onChange={this.handleChange}
                 >
                     {this.renderSearchDropdownOptions('range')}
@@ -98,6 +118,7 @@ class SpellSearch extends React.Component {
                 <label htmlFor="duration">Duration: </label>
                 <select 
                     name="duration"
+                    value={duration}
                     onChange={this.handleChange}
                 >
                     {this.renderSearchDropdownOptions('duration')}
@@ -105,22 +126,25 @@ class SpellSearch extends React.Component {
                 <label htmlFor="concentration">Concentration: </label>
                 <select 
                     name="concentration"
+                    value={String(concentration)}
                     onChange={this.handleChange}
                 >
-                    <option value={null}></option>
-                    <option value={false}>False</option>
-                    <option value={true}>True</option>
+                    <option value={'null'}></option>
+                    <option value={'false'}>False</option>
+                    <option value={'true'}>True</option>
                 </select>
                 <label htmlFor="lvl">Level: </label>
                 <select 
                     name="lvl"
+                    value={String(lvl)}
                     onChange={this.handleChange}
                 >
-                    <option value={null}></option>
+                    <option value={'null'}></option>
                     <option value={0}>Cantrip</option>
                     {/* Remove first option "0" to replace with "Cantrip" text option */}
                     {this.renderSearchDropdownOptions('lvl').slice(1)}
                 </select>
+                <button type="reset" onClick={this.resetSearchFilter}>Reset Filter Options</button>
                 <button type="submit">Search Spells</button>
             </form>
         )
