@@ -13,10 +13,11 @@
 
                 switch(filterDataType) {
                     case 'string': 
-                        const spellStringQuery = new RegExp(spellQuery[filterKey], "i")
-                        return spellStringQuery.test(spell[filterKey])
+                    const spellStringQuery = new RegExp(spellQuery[filterKey], "i")
+                    return spellStringQuery.test(spell[filterKey])
                     case 'boolean':
-                        return spell[filterKey]
+                        console.log(filterDataType, filterKey)
+                        return spell[filterKey] === spellQuery[filterKey]
                     case 'number':
                         return spell[filterKey] === spellQuery[filterKey]
                     default:
